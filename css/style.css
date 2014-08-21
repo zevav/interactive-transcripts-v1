@@ -8,3 +8,9 @@
 
 	cursor: pointer;
 }
+
+.overidecolr{
+
+	background: white !important;
+	padding: 1px;
+}
