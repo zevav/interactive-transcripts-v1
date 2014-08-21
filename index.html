@@ -1,0 +1,67 @@
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+<div style="width:100%; margin-bottom:10px;">
+
+<video  id="videoelement" width="480" height="360"   controls webkit-playsinline>
+   
+</video>
+<h3 id="statusid"></h3>
+
+</div>
+
+
+
+
+<div id="source-transcript" class="transcript" style="max-width:600px; height:500px; overflow-y:scroll">
+   
+</div>
+
+<script type="text/javascript">
+
+$(function(){
+/*
+   $("#statusid").html("Loading...... ");
+   startTranscriptionService(
+   {
+      videoelementID : "videoelement",
+      transcriptContainerID : "source-transcript", 
+      video : [
+         { vi : "video/Roy Adams1.mp4" , type : "video/mp4"  },
+         { vi : "video/Roy_Adams.webm" , type : "video/ogg"  }
+      ],
+      transcript : "transcripts/transcript.htm"
+   },function(){
+      $("#statusid").html("Content Ready!!");
+   });
+*/
+
+   $("#statusid").html("Loading...... ");
+   startTranscriptionService(
+   {
+      videoelementID : "videoelement",
+      transcriptContainerID : "source-transcript", 
+      video : [
+         { vi : "http://bc05.ajnm.me/665003303001/665003303001_1905579071001_DEBATE3-SOT-03D-17.mp4" , type : "video/mp4"  },
+         { vi : "http://bc05.ajnm.me/665003303001/665003303001_1905579071001_DEBATE3-SOT-03D-17.mp4" , type : "video/ogg"  }
+      ],
+      transcript : "transcripts/transcript1.htm"
+   },function(){
+      $("#statusid").html("Content Ready!!");
+   });
+
+
+
+
+});
+
+
+</script>
+
+</body>
+</html>
