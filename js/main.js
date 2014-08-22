@@ -7,38 +7,46 @@ function startTranscriptionService(options, whenreadyfunction){
 			 ele = options.video[i];
 			 str += "<source src='"+ele.vi+"' type='"+ele.type+"'>";
 		};
-
 		str = str+"Your browser does not support the video tag.";
 		$("#"+videoid).html(str);
-
 		$("#"+options.transcriptContainerID).html(data);
+
+
+
 		var dataset = [];
-			var videoele = document.getElementById(videoid);
-			var scrollparent = $("#"+options.transcriptContainerID);
-			var nowtime = 0;
-			var x = 0;
+		var videoele = document.getElementById(videoid);
+		var scrollparent = $("#"+options.transcriptContainerID);
+		var nowtime = 0;
+		var x = 0;
 
 		$(videoele).on("timeupdate", function(event){
+			 event.stopPropagation();
 		     var time = parseInt(this.currentTime*1000);
+
 		     if(time < nowtime){
 		     		adjuest(time);
 		     }
 		     nowtime = time;
-
+		     var flag = false;
+		   
 		     for (var i = x; i < dataset.length; i++) {
 			     	var datael = dataset[i];
-			     	if((datael.start <= time) ){
-			     				if(i > 0){
-			     					var datae2 = dataset[i-1];
-			     					$("#"+datae2.elementid).removeClass("onmovecolor");
-			     				}
-			     				var eleid = datael.elementid;
-			     				$("#"+eleid).addClass("onmovecolor");
-			     				scrollingdiv(scrollparent,$("#"+eleid));
-			     				++x;
-			     				break;
+			     	if((datael.start <= time) ){		
+			     		if(i > 0){
+			     			var datae2 = dataset[i-1];
+			     			$("#"+datae2.elementid).removeClass("onmovecolor");
+			     		}
+			     		++x;
+			     		flag = true;
 			     	}
-		     };
+		     }
+		     if(flag){
+		     	var eleid =  dataset[x-1].elementid;
+			 	$("#"+eleid).addClass("onmovecolor");
+			 	scrollingdiv(scrollparent,$("#"+eleid));
+			 	flag = false;
+			 }
+
 		});
 
 		$("body").delegate(".normalcolor", "click" , function(){
